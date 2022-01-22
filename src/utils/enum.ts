@@ -1,0 +1,3 @@
+//ENUM
+
+export enum ABC {}
