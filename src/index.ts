@@ -2,7 +2,6 @@ import express, { Request, Response, Application } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import { initializeApp } from "firebase-admin/app";
 import httpStatus from "http-status";
 import { routes } from "./routes/export";
 const app: Application = express();
@@ -32,7 +31,6 @@ app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
 
-initializeApp();
 app.use(routes);
 
 app.get("/ping", (req: Request, res: Response) => {

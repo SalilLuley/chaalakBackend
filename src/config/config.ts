@@ -1,9 +1,14 @@
 import "reflect-metadata";
 import { Container } from "inversify";
-import { IDataStoreContract, IUserController } from "../interface/export";
+import {
+  IDataStoreContract,
+  IFirestoreRepo,
+  IUserController,
+} from "../interface/export";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { UserController } from "../controllers/export";
 import { UserValidator } from "../validator/export";
+import { FirestoreRepo } from "../repository/export";
 
 export const container = new Container({
   skipBaseClassChecks: true,
@@ -16,3 +21,8 @@ container
 container
   .bind<UserValidator>(SERVICE_IDENTIFIER.UserValidator)
   .to(UserValidator);
+
+container
+  .bind<IFirestoreRepo>(SERVICE_IDENTIFIER.IFirestoreRepo)
+  .to(FirestoreRepo)
+  .inSingletonScope();
