@@ -12,7 +12,7 @@ const controller = container.get<IUserController>(
 );
 
 const validator = container.get<UserValidator>(
-  SERVICE_IDENTIFIER.IUserValidator
+  SERVICE_IDENTIFIER.UserValidator
 );
 
 userRoute.post("/register", validate(validator.register), controller.register);

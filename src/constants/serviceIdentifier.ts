@@ -6,5 +6,5 @@ export const SERVICE_IDENTIFIER = {
   IUserController: Symbol.for("IUserController"),
   IUserService: Symbol.for("IUserService"),
   IUserRepo: Symbol.for("IUserRepo"),
-  IUserValidator: Symbol.for("IUserValidator"),
+  UserValidator: Symbol.for("UserValidator"),
 };

@@ -2,11 +2,9 @@ import express, { Request, Response, Application } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-
-import { Storage } from "@google-cloud/storage";
 import { initializeApp } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
 import httpStatus from "http-status";
+import { routes } from "./routes/export";
 const app: Application = express();
 
 const PORT = process.env.PORT || 3000;
@@ -31,11 +29,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(helmet());
 app.use(cors());
+
 app.use(express.json({ limit: "50mb" }));
 
 initializeApp();
-
-router;
+app.use(routes);
 
 app.get("/ping", (req: Request, res: Response) => {
   res.status(httpStatus.OK).send("Pong!");
