@@ -9,17 +9,17 @@ import * as shortUuid from "short-uuid";
 
 @injectable()
 export class UserController implements IUserController {
-  GoogleCloudRepo: IDatabaseRepo;
+  databaseRepo: IDatabaseRepo;
   constructor(
-    @inject(SERVICE_IDENTIFIER.IDatabaseRepo) GoogleCloudRepo: IDatabaseRepo
+    @inject(SERVICE_IDENTIFIER.IDatabaseRepo) databaseRepo: IDatabaseRepo
   ) {
-    this.GoogleCloudRepo = GoogleCloudRepo;
+    this.databaseRepo = databaseRepo;
   }
 
   register = async (request: Request, response: Response) => {
     try {
       const uuid = shortUuid.generate();
-      const docRef = this.GoogleCloudRepo.getDb().collection("users").doc(uuid);
+      const docRef = this.databaseRepo.getDb().collection("users").doc(uuid);
       await docRef.set(request.body);
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {

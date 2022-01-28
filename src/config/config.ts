@@ -8,7 +8,7 @@ import {
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { UserController } from "../controllers/export";
 import { UserValidator } from "../validator/export";
-import { FirebaseRepo, GoogleCloudRepo } from "../repository/export";
+import { FirebaseRepo, databaseRepo } from "../repository/export";
 
 export const container = new Container({
   skipBaseClassChecks: true,
@@ -24,7 +24,7 @@ container
 
 // container
 //   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)
-//   .to(GoogleCloudRepo)
+//   .to(databaseRepo)
 //   .inSingletonScope();
 
 container
