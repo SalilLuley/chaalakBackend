@@ -8,7 +8,7 @@ import {
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { UserController } from "../controllers/export";
 import { UserValidator } from "../validator/export";
-import { GoogleCloudRepo } from "../repository/export";
+import { FirebaseRepo, GoogleCloudRepo } from "../repository/export";
 
 export const container = new Container({
   skipBaseClassChecks: true,
@@ -22,7 +22,12 @@ container
   .bind<UserValidator>(SERVICE_IDENTIFIER.UserValidator)
   .to(UserValidator);
 
+// container
+//   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)
+//   .to(GoogleCloudRepo)
+//   .inSingletonScope();
+
 container
   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)
-  .to(GoogleCloudRepo)
+  .to(FirebaseRepo)
   .inSingletonScope();
