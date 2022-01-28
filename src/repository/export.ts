@@ -1,1 +1,1 @@
-export { FirestoreRepo } from "./db/firestore.repo";
+export { GoogleCloudRepo } from "./db/googleCloud.repo";
