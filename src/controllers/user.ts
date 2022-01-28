@@ -4,23 +4,19 @@ import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
 import { SERVICE_IDENTIFIER } from "../constants/export";
-import { IDatabaseRepo, IUserController } from "../interface/export";
+import { IUserService, IUserController } from "../interface/export";
 import * as shortUuid from "short-uuid";
 
 @injectable()
 export class UserController implements IUserController {
-  databaseRepo: IDatabaseRepo;
-  constructor(
-    @inject(SERVICE_IDENTIFIER.IDatabaseRepo) databaseRepo: IDatabaseRepo
-  ) {
-    this.databaseRepo = databaseRepo;
+  service: IUserService;
+  constructor(@inject(SERVICE_IDENTIFIER.IUserService) service: IUserService) {
+    this.service = service;
   }
 
   register = async (request: Request, response: Response) => {
     try {
-      const uuid = shortUuid.generate();
-      const docRef = this.databaseRepo.getDb().collection("users").doc(uuid);
-      await docRef.set(request.body);
+      await this.service.register(request.body);
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {
       response

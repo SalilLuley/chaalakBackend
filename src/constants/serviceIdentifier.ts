@@ -2,7 +2,7 @@ export const SERVICE_IDENTIFIER = {
   //General
   IDataStoreContract: Symbol.for("IDataStoreContract"),
 
-  //LoginValidator
+  //User
   IUserController: Symbol.for("IUserController"),
   IUserService: Symbol.for("IUserService"),
   IUserRepo: Symbol.for("IUserRepo"),
