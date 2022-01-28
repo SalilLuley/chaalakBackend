@@ -3,6 +3,7 @@ import shortUuid from "short-uuid";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IDatabaseRepo, IUserRepo } from "../interface/export";
 import { AddUser } from "../model/export";
+
 @injectable()
 export class UserRepo implements IUserRepo {
   databaseRepo: IDatabaseRepo;

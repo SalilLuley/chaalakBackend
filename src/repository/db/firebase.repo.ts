@@ -15,7 +15,7 @@ export class FirebaseRepo implements IDatabaseRepo {
     });
     this.db = getFirestore();
   }
-  getDb() {
+  getDb(): FirebaseFirestore.Firestore {
     return this.db;
   }
 }
