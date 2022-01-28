@@ -1,4 +1,4 @@
-interface AddUser {
+export interface AddUser {
   firstName: string;
   lastName: string;
 }
