@@ -4,14 +4,14 @@ import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
 import { SERVICE_IDENTIFIER } from "../constants/export";
-import { IFirestoreRepo, IUserController } from "../interface/export";
+import { IDatabaseRepo, IUserController } from "../interface/export";
 import * as shortUuid from "short-uuid";
 
 @injectable()
 export class UserController implements IUserController {
-  firestoreRepo: IFirestoreRepo;
+  firestoreRepo: IDatabaseRepo;
   constructor(
-    @inject(SERVICE_IDENTIFIER.IFirestoreRepo) firestoreRepo: IFirestoreRepo
+    @inject(SERVICE_IDENTIFIER.IDatabaseRepo) firestoreRepo: IDatabaseRepo
   ) {
     this.firestoreRepo = firestoreRepo;
   }

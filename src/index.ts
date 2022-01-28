@@ -8,24 +8,6 @@ const app: Application = express();
 
 const PORT = process.env.PORT || 3000;
 
-// const storage = new Storage();
-// // Makes an authenticated API request.
-// async function listBuckets() {
-//   try {
-//     const results = await storage.getBuckets();
-
-//     const [buckets] = results;
-
-//     console.log("Buckets:");
-//     buckets.forEach((bucket) => {
-//       console.log(bucket.name);
-//     });
-//   } catch (err) {
-//     console.error("ERROR:", err);
-//   }
-// }
-// listBuckets();
-
 app.use(helmet());
 app.use(cors());
 

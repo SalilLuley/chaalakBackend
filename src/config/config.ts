@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { Container } from "inversify";
 import {
   IDataStoreContract,
-  IFirestoreRepo,
+  IDatabaseRepo,
   IUserController,
 } from "../interface/export";
 import { SERVICE_IDENTIFIER } from "../constants/export";
@@ -23,6 +23,6 @@ container
   .to(UserValidator);
 
 container
-  .bind<IFirestoreRepo>(SERVICE_IDENTIFIER.IFirestoreRepo)
+  .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)
   .to(FirestoreRepo)
   .inSingletonScope();

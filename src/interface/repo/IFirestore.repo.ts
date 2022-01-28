@@ -1,3 +1,3 @@
-export interface IFirestoreRepo {
+export interface IDatabaseRepo {
   getDb();
 }
