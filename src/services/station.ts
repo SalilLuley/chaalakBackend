@@ -10,7 +10,6 @@ export class StationService implements IStationService {
     this.repo = repo;
   }
   update<T>(station: AddStation): Promise<T> {
-    console.log("station", station);
     return this.repo.update(station);
   }
   findOne<T>(stationId: string): Promise<T> {
