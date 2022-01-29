@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { getFirestore } from "firebase-admin/firestore";
 import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IUserService, IUserController } from "../interface/export";
-import * as shortUuid from "short-uuid";
 
 @injectable()
 export class UserController implements IUserController {
