@@ -20,10 +20,7 @@ export class UserController implements IUserController {
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {
       console.log(error);
-
-      response
-        .status(httpStatus.BAD_REQUEST)
-        .send({ message: "Failed to add item" });
+      response.status(httpStatus.BAD_REQUEST).send({ message: "Failed" });
     }
   };
 }

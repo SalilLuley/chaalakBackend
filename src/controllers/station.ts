@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
 import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
+import { ParsedQs } from "qs";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IStationService, IStationController } from "../interface/export";
+import { AddStation } from "../model/export";
 
 @injectable()
 export class StationController implements IStationController {
@@ -13,6 +16,15 @@ export class StationController implements IStationController {
   ) {
     this.service = service;
   }
+  findAll = async (request: Request, response: Response) => {
+    try {
+      const data = await this.service.findAll<AddStation>();
+      response.status(httpStatus.OK).send(data);
+    } catch (error) {
+      console.log(error);
+      response.status(httpStatus.BAD_REQUEST).send({ message: "Failed" });
+    }
+  };
 
   register = async (request: Request, response: Response) => {
     try {
@@ -20,9 +32,7 @@ export class StationController implements IStationController {
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {
       console.log(error);
-      response
-        .status(httpStatus.BAD_REQUEST)
-        .send({ message: "Failed to add item" });
+      response.status(httpStatus.BAD_REQUEST).send({ message: "Failed" });
     }
   };
 }

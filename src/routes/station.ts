@@ -15,6 +15,7 @@ const validator = container.get<StationValidator>(
   SERVICE_IDENTIFIER.StationValidator
 );
 
+stationRoute.get("/all", controller.findAll);
 stationRoute.post("/", validate(validator.register), controller.register);
 
 export default stationRoute;
