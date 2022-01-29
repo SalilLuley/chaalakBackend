@@ -5,8 +5,10 @@ import Joi from "joi";
 export class StationValidator {
   register = {
     body: {
-      latitude: Joi.string().optional(),
-      longitude: Joi.string().optional(),
+      location: Joi.object({
+        latitude: Joi.number().optional(),
+        longitude: Joi.number().optional(),
+      }).optional(),
       name: Joi.string().optional(),
       description: Joi.string().optional(),
       slotPrefix: Joi.string().optional(),
