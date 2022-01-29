@@ -7,7 +7,6 @@ export class UserValidator {
     body: {
       first: Joi.string().optional(),
       last: Joi.string().optional(),
-      // born: Joi.string().optional(),
     },
   };
 }

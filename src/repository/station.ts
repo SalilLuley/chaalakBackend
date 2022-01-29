@@ -1,6 +1,6 @@
 import { inject, injectable } from "inversify";
 import shortUuid from "short-uuid";
-import { SERVICE_IDENTIFIER } from "../constants/export";
+import { MetaDataFirestore, SERVICE_IDENTIFIER } from "../constants/export";
 import { IDatabaseRepo, IStationRepo } from "../interface/export";
 import { AddStation } from "../model/export";
 
@@ -15,7 +15,7 @@ export class StationRepo implements IStationRepo {
   async delete<T>(stationId: string): Promise<T> {
     await this.databaseRepo
       .getDb()
-      .collection("station")
+      .collection(MetaDataFirestore.station)
       .doc(stationId)
       .update({ isDeleted: true });
     return this.findOne(stationId);
@@ -32,7 +32,7 @@ export class StationRepo implements IStationRepo {
   async findOne<T>(stationId: string): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
-      .collection("station")
+      .collection(MetaDataFirestore.station)
       .doc(stationId)
       .get();
     return snapshot.data();
@@ -40,7 +40,7 @@ export class StationRepo implements IStationRepo {
   async findAll<T>(): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
-      .collection("station")
+      .collection(MetaDataFirestore.station)
       .get();
     return snapshot.docs.map((doc) => doc.data());
   }
@@ -48,7 +48,7 @@ export class StationRepo implements IStationRepo {
     const uuid = shortUuid.generate();
     return this.databaseRepo
       .getDb()
-      .collection("station")
+      .collection(MetaDataFirestore.station)
       .doc(uuid)
       .set({ ...user, stationId: uuid });
   }
