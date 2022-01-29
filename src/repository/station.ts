@@ -12,6 +12,14 @@ export class StationRepo implements IStationRepo {
   ) {
     this.databaseRepo = databaseRepo;
   }
+  async update<T>(station: AddStation): Promise<T> {
+    const snapshot = await this.databaseRepo
+      .getDb()
+      .collection("station")
+      .doc(station.stationId)
+      .update(station);
+    return this.findOne(station.stationId);
+  }
   async findOne<T>(stationId: string): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()

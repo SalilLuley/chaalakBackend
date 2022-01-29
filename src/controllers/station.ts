@@ -16,6 +16,21 @@ export class StationController implements IStationController {
   ) {
     this.service = service;
   }
+  delete = async (request: Request, response: Response) => {
+    try {
+      const data = await this.service.findOne<AddStation>(
+        request.query.stationId?.toString()!
+      );
+      response.status(httpStatus.OK).send(data);
+    } catch (error) {
+      console.log(error);
+
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
+    }
+  };
+
   findOne = async (request: Request, response: Response) => {
     try {
       const data = await this.service.findOne<AddStation>(
@@ -32,7 +47,10 @@ export class StationController implements IStationController {
   };
   update = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findAll<AddStation>();
+      const data = await this.service.update<AddStation>({
+        ...request.query,
+        ...request.body,
+      });
       response.status(httpStatus.OK).send(data);
     } catch (error) {
       response
@@ -42,7 +60,7 @@ export class StationController implements IStationController {
   };
   findAll = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findAll<AddStation>();
+      const data = await this.service.findAll<[AddStation]>();
       response.status(httpStatus.OK).send(data);
     } catch (error) {
       response
