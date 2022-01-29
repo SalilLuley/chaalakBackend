@@ -15,7 +15,11 @@ const validator = container.get<StationValidator>(
   SERVICE_IDENTIFIER.StationValidator
 );
 
-stationRoute.get("/all", controller.findAll);
+stationRoute.get("/all", validate(validator.findAll), controller.findAll);
+stationRoute.get("/", validate(validator.findOne), controller.findOne);
+// stationRoute.put("/", validate(validator.findOne), controller.findOne);
+// stationRoute.delete("/", validate(validator.findOne), controller.findOne);
+
 stationRoute.post("/", validate(validator.register), controller.register);
 
 export default stationRoute;

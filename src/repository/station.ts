@@ -12,6 +12,14 @@ export class StationRepo implements IStationRepo {
   ) {
     this.databaseRepo = databaseRepo;
   }
+  async findOne<T>(stationId: string): Promise<T> {
+    const snapshot = await this.databaseRepo
+      .getDb()
+      .collection("station")
+      .doc(stationId)
+      .get();
+    return snapshot.data();
+  }
   async findAll<T>(): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
@@ -21,6 +29,10 @@ export class StationRepo implements IStationRepo {
   }
   register<T>(user: AddStation): Promise<T> {
     const uuid = shortUuid.generate();
-    return this.databaseRepo.getDb().collection("station").doc(uuid).set(user);
+    return this.databaseRepo
+      .getDb()
+      .collection("station")
+      .doc(uuid)
+      .set({ ...user, stationId: uuid });
   }
 }

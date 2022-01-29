@@ -9,6 +9,10 @@ export class StationService implements IStationService {
   constructor(@inject(SERVICE_IDENTIFIER.IStationRepo) repo: IStationRepo) {
     this.repo = repo;
   }
+  findOne<T>(stationId: string): Promise<T> {
+    return this.repo.findOne(stationId);
+  }
+
   findAll<T>(): Promise<T> {
     return this.repo.findAll<T>();
   }

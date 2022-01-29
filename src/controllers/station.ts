@@ -16,6 +16,30 @@ export class StationController implements IStationController {
   ) {
     this.service = service;
   }
+  findOne = async (request: Request, response: Response) => {
+    try {
+      const data = await this.service.findOne<AddStation>(
+        request.query.stationId?.toString()!
+      );
+      response.status(httpStatus.OK).send(data);
+    } catch (error) {
+      console.log(error);
+
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
+    }
+  };
+  update = async (request: Request, response: Response) => {
+    try {
+      const data = await this.service.findAll<AddStation>();
+      response.status(httpStatus.OK).send(data);
+    } catch (error) {
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
+    }
+  };
   findAll = async (request: Request, response: Response) => {
     try {
       const data = await this.service.findAll<AddStation>();
