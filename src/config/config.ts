@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Container } from "inversify";
 import {
-  IDataStoreContract,
+  IDatabaseContract,
   IDatabaseRepo,
   IUserController,
   IUserService,

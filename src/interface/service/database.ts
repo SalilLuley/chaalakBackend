@@ -1,4 +1,4 @@
-export interface IDataStoreContract {
+export interface IDatabaseContract {
   find(params: any): Promise<any>;
   findOne(params: any): Promise<any>;
   insert(params: any): Promise<any>;
