@@ -18,7 +18,7 @@ const validator = container.get<StationValidator>(
 stationRoute.get("/all", validate(validator.findAll), controller.findAll);
 stationRoute.get("/", validate(validator.findOne), controller.findOne);
 stationRoute.put("/", validate(validator.findOne), controller.update);
-stationRoute.delete("/", validate(validator.findOne), controller.delete);
+stationRoute.delete("/", validate(validator.delete), controller.delete);
 
 stationRoute.post("/", validate(validator.register), controller.register);
 

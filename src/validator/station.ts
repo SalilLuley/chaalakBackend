@@ -19,7 +19,7 @@ export class StationValidator {
         .optional()
         .allow(EntityStatus.ACTIVE, EntityStatus.INACTIVE)
         .default(EntityStatus.ACTIVE),
-      iSDeleted: Joi.boolean().optional().default(false),
+      isDeleted: Joi.boolean().optional().default(false),
     },
   };
 
@@ -54,7 +54,7 @@ export class StationValidator {
       entityStatus: Joi.number()
         .optional()
         .allow(EntityStatus.ACTIVE, EntityStatus.INACTIVE),
-      iSDeleted: Joi.boolean().optional(),
+      isDeleted: Joi.boolean().optional(),
     },
   };
 }

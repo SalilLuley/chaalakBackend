@@ -9,6 +9,9 @@ export class StationService implements IStationService {
   constructor(@inject(SERVICE_IDENTIFIER.IStationRepo) repo: IStationRepo) {
     this.repo = repo;
   }
+  delete<T>(stationId: string): Promise<T> {
+    return this.repo.delete(stationId);
+  }
   update<T>(station: AddStation): Promise<T> {
     return this.repo.update(station);
   }

@@ -12,8 +12,17 @@ export class StationRepo implements IStationRepo {
   ) {
     this.databaseRepo = databaseRepo;
   }
+  async delete<T>(stationId: string): Promise<T> {
+    await this.databaseRepo
+      .getDb()
+      .collection("station")
+      .doc(stationId)
+      .update({ isDeleted: true });
+    return this.findOne(stationId);
+  }
+
   async update<T>(station: AddStation): Promise<T> {
-    const snapshot = await this.databaseRepo
+    await this.databaseRepo
       .getDb()
       .collection("station")
       .doc(station.stationId)

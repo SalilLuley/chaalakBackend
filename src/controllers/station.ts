@@ -18,13 +18,11 @@ export class StationController implements IStationController {
   }
   delete = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findOne<AddStation>(
+      const data = await this.service.delete<AddStation>(
         request.query.stationId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
-      console.log(error);
-
       response
         .status(httpStatus.BAD_REQUEST)
         .send({ message: "Failed", error: error });
@@ -38,8 +36,6 @@ export class StationController implements IStationController {
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
-      console.log(error);
-
       response
         .status(httpStatus.BAD_REQUEST)
         .send({ message: "Failed", error: error });
