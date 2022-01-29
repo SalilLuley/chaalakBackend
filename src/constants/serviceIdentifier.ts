@@ -10,6 +10,9 @@ export const SERVICE_IDENTIFIER = {
 
   //stations
   StationValidator: Symbol.for("StationValidator"),
+  IStationRepo: Symbol.for("IStationRepo"),
+  IStationService: Symbol.for("IStationService"),
+  IStationController: Symbol.for("IStationController"),
 
   IDatabaseRepo: Symbol.for("IDatabaseRepo"),
 };
