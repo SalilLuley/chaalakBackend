@@ -1,5 +1,5 @@
 //Generic
-export { IDatabaseContract } from "./service/database";
+export { IDatabaseService } from "./service/database";
 export { IUserController } from "./controller/user";
 export { IDatabaseRepo } from "./repo/database";
 

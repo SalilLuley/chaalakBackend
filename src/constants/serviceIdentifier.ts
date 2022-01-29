@@ -1,6 +1,6 @@
 export const SERVICE_IDENTIFIER = {
   //General
-  IDatabaseContract: Symbol.for("IDatabaseContract"),
+  IDatabaseService: Symbol.for("IDatabaseService"),
 
   //User
   IUserController: Symbol.for("IUserController"),
