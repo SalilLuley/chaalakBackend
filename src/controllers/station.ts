@@ -21,8 +21,9 @@ export class StationController implements IStationController {
       const data = await this.service.findAll<AddStation>();
       response.status(httpStatus.OK).send(data);
     } catch (error) {
-      console.log(error);
-      response.status(httpStatus.BAD_REQUEST).send({ message: "Failed" });
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
     }
   };
 
@@ -31,8 +32,9 @@ export class StationController implements IStationController {
       await this.service.register(request.body);
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {
-      console.log(error);
-      response.status(httpStatus.BAD_REQUEST).send({ message: "Failed" });
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
     }
   };
 }
