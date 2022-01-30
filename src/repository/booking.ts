@@ -2,7 +2,7 @@ import { inject, injectable } from "inversify";
 import shortUuid from "short-uuid";
 import { MetaDataFirestore, SERVICE_IDENTIFIER } from "../constants/export";
 import { IDatabaseRepo, IBookingRepo } from "../interface/export";
-import { AddStation } from "../model/export";
+import { InsertStation } from "../model/export";
 
 @injectable()
 export class BookingRepo implements IBookingRepo {
@@ -21,7 +21,7 @@ export class BookingRepo implements IBookingRepo {
     return this.findOne(stationId);
   }
 
-  async update<T>(station: AddStation): Promise<T> {
+  async update<T>(station: InsertStation): Promise<T> {
     await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.station)
@@ -44,7 +44,7 @@ export class BookingRepo implements IBookingRepo {
       .get();
     return snapshot.docs.map((doc) => doc.data());
   }
-  insert<T>(user: AddStation): Promise<T> {
+  insert<T>(user: InsertStation): Promise<T> {
     const uuid = shortUuid.generate();
     return this.databaseRepo
       .getDb()

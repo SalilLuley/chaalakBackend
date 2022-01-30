@@ -12,9 +12,9 @@ export class UserController implements IUserController {
     this.service = service;
   }
 
-  register = async (request: Request, response: Response) => {
+  insert = async (request: Request, response: Response) => {
     try {
-      await this.service.register(request.body);
+      await this.service.insert(request.body);
       response.status(httpStatus.OK).send({ message: "Added item" });
     } catch (error) {
       response

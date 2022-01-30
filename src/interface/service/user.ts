@@ -1,5 +1,5 @@
-import { AddUser } from "../../model/export";
+import { InsertUser } from "../../model/export";
 
 export interface IUserService {
-  register<T>(user: AddUser): Promise<T>;
+  insert<T>(user: InsertUser): Promise<T>;
 }

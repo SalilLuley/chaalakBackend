@@ -6,7 +6,7 @@ import { injectable } from "inversify/lib/annotation/injectable";
 import { ParsedQs } from "qs";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IStationService, IStationController } from "../interface/export";
-import { AddStation } from "../model/export";
+import { InsertStation } from "../model/export";
 
 @injectable()
 export class StationController implements IStationController {
@@ -18,7 +18,7 @@ export class StationController implements IStationController {
   }
   delete = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.delete<AddStation>(
+      const data = await this.service.delete<InsertStation>(
         request.query.stationId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
@@ -31,7 +31,7 @@ export class StationController implements IStationController {
 
   findOne = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findOne<AddStation>(
+      const data = await this.service.findOne<InsertStation>(
         request.query.stationId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
@@ -43,7 +43,7 @@ export class StationController implements IStationController {
   };
   update = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.update<AddStation>({
+      const data = await this.service.update<InsertStation>({
         ...request.query,
         ...request.body,
       });
@@ -56,7 +56,7 @@ export class StationController implements IStationController {
   };
   findAll = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findAll<[AddStation]>();
+      const data = await this.service.findAll<[InsertStation]>();
       response.status(httpStatus.OK).send(data);
     } catch (error) {
       response

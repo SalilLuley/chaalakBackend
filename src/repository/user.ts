@@ -2,7 +2,7 @@ import { inject, injectable } from "inversify";
 import shortUuid from "short-uuid";
 import { MetaDataFirestore, SERVICE_IDENTIFIER } from "../constants/export";
 import { IDatabaseRepo, IUserRepo } from "../interface/export";
-import { AddUser } from "../model/export";
+import { InsertUser } from "../model/export";
 
 @injectable()
 export class UserRepo implements IUserRepo {
@@ -12,7 +12,7 @@ export class UserRepo implements IUserRepo {
   ) {
     this.databaseRepo = databaseRepo;
   }
-  register<T>(user: AddUser): Promise<T> {
+  insert<T>(user: InsertUser): Promise<T> {
     const uuid = shortUuid.generate();
     return this.databaseRepo
       .getDb()

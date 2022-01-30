@@ -3,7 +3,7 @@ import Joi from "joi";
 
 @injectable()
 export class UserValidator {
-  register = {
+  insert = {
     body: {
       first: Joi.string().optional(),
       last: Joi.string().optional(),

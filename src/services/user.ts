@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IUserRepo, IUserService } from "../interface/export";
-import { AddUser } from "../model/export";
+import { InsertUser } from "../model/export";
 
 @injectable()
 export class UserService implements IUserService {
@@ -10,7 +10,7 @@ export class UserService implements IUserService {
     this.repo = repo;
   }
 
-  register<T>(user: AddUser): Promise<T> {
-    return this.repo.register(user);
+  insert<T>(user: InsertUser): Promise<T> {
+    return this.repo.insert(user);
   }
 }

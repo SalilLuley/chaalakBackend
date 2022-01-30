@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IStationRepo, IStationService } from "../interface/export";
-import { AddStation } from "../model/export";
+import { InsertStation } from "../model/export";
 
 @injectable()
 export class StationService implements IStationService {
@@ -12,7 +12,7 @@ export class StationService implements IStationService {
   delete<T>(stationId: string): Promise<T> {
     return this.repo.delete(stationId);
   }
-  update<T>(station: AddStation): Promise<T> {
+  update<T>(station: InsertStation): Promise<T> {
     return this.repo.update(station);
   }
   findOne<T>(stationId: string): Promise<T> {
@@ -23,7 +23,7 @@ export class StationService implements IStationService {
     return this.repo.findAll<T>();
   }
 
-  insert<T>(user: AddStation): Promise<T> {
+  insert<T>(user: InsertStation): Promise<T> {
     return this.repo.insert<T>(user);
   }
 }

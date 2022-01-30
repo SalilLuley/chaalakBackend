@@ -1,4 +1,4 @@
-export interface AddStation {
+export interface CreateBooking {
   stationId: string;
   latitude: string;
   longitude: string;
