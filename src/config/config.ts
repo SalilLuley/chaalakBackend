@@ -12,7 +12,11 @@ import {
 } from "../interface/export";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { StationController, UserController } from "../controllers/export";
-import { StationValidator, UserValidator } from "../validator/export";
+import {
+  BookingValidator,
+  StationValidator,
+  UserValidator,
+} from "../validator/export";
 import {
   FirebaseRepo,
   databaseRepo,
@@ -46,6 +50,11 @@ container
   .bind<IStationService>(SERVICE_IDENTIFIER.IStationService)
   .to(StationService);
 container.bind<IStationRepo>(SERVICE_IDENTIFIER.IStationRepo).to(StationRepo);
+
+//Booking
+container
+  .bind<BookingValidator>(SERVICE_IDENTIFIER.BookingValidator)
+  .to(BookingValidator);
 
 // container
 //   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)

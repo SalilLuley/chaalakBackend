@@ -14,5 +14,8 @@ export const SERVICE_IDENTIFIER = {
   IStationService: Symbol.for("IStationService"),
   IStationController: Symbol.for("IStationController"),
 
+  //Booking
+  BookingValidator: Symbol.for("BookingValidator"),
+
   IDatabaseRepo: Symbol.for("IDatabaseRepo"),
 };
