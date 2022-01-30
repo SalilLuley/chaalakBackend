@@ -9,7 +9,12 @@ export class UserService implements IUserService {
   constructor(@inject(SERVICE_IDENTIFIER.IUserRepo) repo: IUserRepo) {
     this.repo = repo;
   }
-
+  findOne<T>(userId: string): Promise<T> {
+    return this.repo.findOne<T>(userId);
+  }
+  findAll<T>(): Promise<T> {
+    return this.repo.findAll<T>();
+  }
   insert<T>(user: InsertUser): Promise<T> {
     return this.repo.insert(user);
   }

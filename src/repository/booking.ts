@@ -7,36 +7,39 @@ import { CreateBooking } from "../model/export";
 @injectable()
 export class BookingRepo implements IBookingRepo {
   databaseRepo: IDatabaseRepo;
+
   constructor(
     @inject(SERVICE_IDENTIFIER.IDatabaseRepo) databaseRepo: IDatabaseRepo
   ) {
     this.databaseRepo = databaseRepo;
   }
-  async delete<T>(stationId: string): Promise<T> {
+
+  async delete<T>(bookingId: string): Promise<T> {
     await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.bookings)
-      .doc(stationId)
+      .doc(bookingId)
       .update({ isDeleted: true });
-    return this.findOne(stationId);
+    return this.findOne(bookingId);
   }
 
-  async update<T>(station: CreateBooking): Promise<T> {
+  async update<T>(booking: CreateBooking): Promise<T> {
     await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.bookings)
-      .doc(station.stationId)
-      .update(station);
-    return this.findOne(station.stationId);
+      .doc(booking.bookingId)
+      .update(booking);
+    return this.findOne(booking.bookingId);
   }
-  async findOne<T>(stationId: string): Promise<T> {
+  async findOne<T>(bookingId: string): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.bookings)
-      .doc(stationId)
+      .doc(bookingId)
       .get();
     return snapshot.data();
   }
+
   async findAll<T>(): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
@@ -44,12 +47,14 @@ export class BookingRepo implements IBookingRepo {
       .get();
     return snapshot.docs.map((doc) => doc.data());
   }
-  insert<T>(user: CreateBooking): Promise<T> {
+
+  async insert<T>(booking: CreateBooking): Promise<T> {
     const uuid = shortUuid.generate();
-    return this.databaseRepo
+    await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.bookings)
       .doc(uuid)
-      .set({ ...user, stationId: uuid });
+      .set({ ...booking, bookingId: uuid });
+    return this.findOne(uuid);
   }
 }

@@ -7,4 +7,5 @@ export interface CreateBooking {
   slotPrefix: string;
   slots: number;
   slotsAvailable: number;
+  bookingId: string;
 }

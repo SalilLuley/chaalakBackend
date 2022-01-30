@@ -17,7 +17,7 @@ export class BookingController implements IBookingController {
   delete = async (request: Request, response: Response) => {
     try {
       const data = await this.service.delete<CreateBooking>(
-        request.query.stationId?.toString()!
+        request.query.bookingId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
@@ -30,7 +30,7 @@ export class BookingController implements IBookingController {
   findOne = async (request: Request, response: Response) => {
     try {
       const data = await this.service.findOne<CreateBooking>(
-        request.query.stationId?.toString()!
+        request.query.bookingId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
@@ -65,8 +65,8 @@ export class BookingController implements IBookingController {
 
   create = async (request: Request, response: Response) => {
     try {
-      await this.service.insert(request.body);
-      response.status(httpStatus.OK).send({ message: "Added item" });
+      const result = await this.service.insert(request.body);
+      response.status(httpStatus.OK).send(result);
     } catch (error) {
       response
         .status(httpStatus.BAD_REQUEST)

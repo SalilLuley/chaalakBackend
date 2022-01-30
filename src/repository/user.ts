@@ -12,12 +12,28 @@ export class UserRepo implements IUserRepo {
   ) {
     this.databaseRepo = databaseRepo;
   }
-  insert<T>(user: InsertUser): Promise<T> {
+  async insert<T>(user: InsertUser): Promise<T> {
     const uuid = shortUuid.generate();
-    return this.databaseRepo
+    await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.users)
       .doc(uuid)
-      .set(user);
+      .set({ ...user, userId: uuid });
+    return this.findOne(uuid);
+  }
+  async findOne<T>(userId: string): Promise<T> {
+    const snapshot = await this.databaseRepo
+      .getDb()
+      .collection(MetaDataFirestore.users)
+      .doc(userId)
+      .get();
+    return snapshot.data();
+  }
+  async findAll<T>(): Promise<T> {
+    const snapshot = await this.databaseRepo
+      .getDb()
+      .collection(MetaDataFirestore.users)
+      .get();
+    return snapshot.docs.map((doc) => doc.data());
   }
 }
