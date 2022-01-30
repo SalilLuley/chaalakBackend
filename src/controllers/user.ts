@@ -14,8 +14,8 @@ export class UserController implements IUserController {
 
   insert = async (request: Request, response: Response) => {
     try {
-      await this.service.insert(request.body);
-      response.status(httpStatus.OK).send({ message: "Added item" });
+      const result = await this.service.insert(request.body);
+      response.status(httpStatus.OK).send(result);
     } catch (error) {
       response
         .status(httpStatus.BAD_REQUEST)
