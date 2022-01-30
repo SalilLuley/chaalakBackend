@@ -24,7 +24,7 @@ export class StationRepo implements IStationRepo {
   async update<T>(station: AddStation): Promise<T> {
     await this.databaseRepo
       .getDb()
-      .collection("station")
+      .collection(MetaDataFirestore.station)
       .doc(station.stationId)
       .update(station);
     return this.findOne(station.stationId);
