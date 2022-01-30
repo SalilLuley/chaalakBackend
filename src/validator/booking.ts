@@ -4,7 +4,7 @@ import { EntityStatus } from "../utils/export";
 
 @injectable()
 export class BookingValidator {
-  register = {
+  create = {
     body: {
       location: Joi.object({
         latitude: Joi.number().optional(),

@@ -23,7 +23,7 @@ export class StationService implements IStationService {
     return this.repo.findAll<T>();
   }
 
-  register<T>(user: AddStation): Promise<T> {
-    return this.repo.register<T>(user);
+  insert<T>(user: AddStation): Promise<T> {
+    return this.repo.insert<T>(user);
   }
 }
