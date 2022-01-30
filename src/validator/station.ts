@@ -6,15 +6,11 @@ import { EntityStatus } from "../utils/export";
 export class StationValidator {
   insert = {
     body: {
-      location: Joi.object({
-        latitude: Joi.number().optional(),
-        longitude: Joi.number().optional(),
-      }).optional(),
-      name: Joi.string().optional(),
+      stationId: Joi.string().optional(),
+      userId: Joi.string().optional(),
       description: Joi.string().optional(),
       slotPrefix: Joi.string().optional(),
-      slots: Joi.number().optional(),
-      slotsAvailable: Joi.number().optional(),
+      slot: Joi.number().optional(),
       entityStatus: Joi.number()
         .optional()
         .allow(EntityStatus.ACTIVE, EntityStatus.INACTIVE)
@@ -27,34 +23,31 @@ export class StationValidator {
 
   delete = {
     query: Joi.object({
-      stationId: Joi.string().optional(),
+      bookingId: Joi.string().optional(),
     }),
   };
 
   findOne = {
     query: Joi.object({
-      stationId: Joi.string().optional(),
+      bookingId: Joi.string().optional(),
     }),
   };
 
   update = {
     query: Joi.object({
-      stationId: Joi.string().optional(),
+      bookingId: Joi.string().optional(),
     }),
     body: {
-      location: Joi.object({
-        latitude: Joi.number().optional(),
-        longitude: Joi.number().optional(),
-      }).optional(),
-      name: Joi.string().optional(),
+      stationId: Joi.string().optional(),
+      userId: Joi.string().optional(),
       description: Joi.string().optional(),
       slotPrefix: Joi.string().optional(),
-      slots: Joi.number().optional(),
-      slotsAvailable: Joi.number().optional(),
+      slot: Joi.number().optional(),
       entityStatus: Joi.number()
         .optional()
-        .allow(EntityStatus.ACTIVE, EntityStatus.INACTIVE),
-      isDeleted: Joi.boolean().optional(),
+        .allow(EntityStatus.ACTIVE, EntityStatus.INACTIVE)
+        .default(EntityStatus.ACTIVE),
+      isDeleted: Joi.boolean().optional().default(false),
     },
   };
 }
