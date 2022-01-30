@@ -9,9 +9,16 @@ import {
   IStationRepo,
   IStationService,
   IStationController,
+  IBookingController,
+  IBookingRepo,
+  IBookingService,
 } from "../interface/export";
 import { SERVICE_IDENTIFIER } from "../constants/export";
-import { StationController, UserController } from "../controllers/export";
+import {
+  BookingController,
+  StationController,
+  UserController,
+} from "../controllers/export";
 import {
   BookingValidator,
   StationValidator,
@@ -19,11 +26,16 @@ import {
 } from "../validator/export";
 import {
   FirebaseRepo,
-  databaseRepo,
+  DatabaseRepo,
   UserRepo,
   StationRepo,
+  BookingRepo,
 } from "../repository/export";
-import { StationService, UserService } from "../services/export";
+import {
+  BookingService,
+  StationService,
+  UserService,
+} from "../services/export";
 
 export const container = new Container({
   skipBaseClassChecks: true,
@@ -55,6 +67,13 @@ container.bind<IStationRepo>(SERVICE_IDENTIFIER.IStationRepo).to(StationRepo);
 container
   .bind<BookingValidator>(SERVICE_IDENTIFIER.BookingValidator)
   .to(BookingValidator);
+container
+  .bind<IBookingController>(SERVICE_IDENTIFIER.IBookingController)
+  .to(BookingController);
+container.bind<IBookingRepo>(SERVICE_IDENTIFIER.IBookingRepo).to(BookingRepo);
+container
+  .bind<IBookingService>(SERVICE_IDENTIFIER.IBookingService)
+  .to(BookingService);
 
 // container
 //   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)

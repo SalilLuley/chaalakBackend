@@ -16,6 +16,9 @@ export const SERVICE_IDENTIFIER = {
 
   //Booking
   BookingValidator: Symbol.for("BookingValidator"),
+  IBookingController: Symbol.for("IBookingController"),
+  IBookingRepo: Symbol.for("IBookingRepo"),
+  IBookingService: Symbol.for("IBookingService"),
 
   IDatabaseRepo: Symbol.for("IDatabaseRepo"),
 };

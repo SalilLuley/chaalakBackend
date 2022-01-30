@@ -11,3 +11,8 @@ export { IUserRepo } from "./repo/user";
 export { IStationController } from "./controller/station";
 export { IStationService } from "./service/station";
 export { IStationRepo } from "./repo/station";
+
+//Booking
+export { IBookingController } from "./controller/booking";
+export { IBookingRepo } from "./repo/booking";
+export { IBookingService } from "./service/booking";

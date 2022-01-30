@@ -4,7 +4,7 @@ import { injectable } from "inversify/lib/annotation/injectable";
 import { IDatabaseRepo as IDatabaseRepo } from "../../interface/export";
 
 @injectable()
-export class databaseRepo implements IDatabaseRepo {
+export class DatabaseRepo implements IDatabaseRepo {
   private db: FirebaseFirestore.Firestore;
   constructor() {
     initializeApp();
