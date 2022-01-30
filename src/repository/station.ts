@@ -44,7 +44,7 @@ export class StationRepo implements IStationRepo {
       .get();
     return snapshot.docs.map((doc) => doc.data());
   }
-  register<T>(user: AddStation): Promise<T> {
+  insert<T>(user: AddStation): Promise<T> {
     const uuid = shortUuid.generate();
     return this.databaseRepo
       .getDb()
