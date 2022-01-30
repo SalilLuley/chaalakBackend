@@ -4,7 +4,7 @@ import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IBookingService, IBookingController } from "../interface/export";
-import { InsertStation } from "../model/export";
+import { CreateBooking } from "../model/export";
 
 @injectable()
 export class BookingController implements IBookingController {
@@ -16,7 +16,7 @@ export class BookingController implements IBookingController {
   }
   delete = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.delete<InsertStation>(
+      const data = await this.service.delete<CreateBooking>(
         request.query.stationId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
@@ -29,7 +29,7 @@ export class BookingController implements IBookingController {
 
   findOne = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findOne<InsertStation>(
+      const data = await this.service.findOne<CreateBooking>(
         request.query.stationId?.toString()!
       );
       response.status(httpStatus.OK).send(data);
@@ -41,7 +41,7 @@ export class BookingController implements IBookingController {
   };
   update = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.update<InsertStation>({
+      const data = await this.service.update<CreateBooking>({
         ...request.query,
         ...request.body,
       });
@@ -54,7 +54,7 @@ export class BookingController implements IBookingController {
   };
   findAll = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.findAll<[InsertStation]>();
+      const data = await this.service.findAll<[CreateBooking]>();
       response.status(httpStatus.OK).send(data);
     } catch (error) {
       response
