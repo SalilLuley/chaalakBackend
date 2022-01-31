@@ -73,7 +73,7 @@ typings/
 .env.dev
 .env.uat
 .env.test
-
+base64.txt
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
