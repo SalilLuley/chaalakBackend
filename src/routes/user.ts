@@ -15,6 +15,8 @@ const validator = container.get<UserValidator>(
   SERVICE_IDENTIFIER.UserValidator
 );
 
-userRoute.post("/register", validate(validator.register), controller.register);
+userRoute.post("/register", validate(validator.insert), controller.insert);
+userRoute.get("/all", validate(validator.findAll), controller.findAll);
+userRoute.get("/", validate(validator.findOne), controller.findOne);
 
 export default userRoute;

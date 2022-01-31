@@ -1,7 +1,18 @@
 //Generic
-export { IDataStoreContract } from "./service/dataStore/IDataStore.contract";
-export { IUserController } from "./controller/IUserController";
-export { IDatabaseRepo } from "./repo/IDatabase.repo";
+export { IDatabaseService } from "./service/database";
+export { IDatabaseRepo } from "./repo/database";
 
-export { IUserService } from "./service/IUserService";
-export { IUserRepo } from "./repo/IUser.repo";
+//User
+export { IUserController } from "./controller/user";
+export { IUserService } from "./service/user";
+export { IUserRepo } from "./repo/user";
+
+//Stations
+export { IStationController } from "./controller/station";
+export { IStationService } from "./service/station";
+export { IStationRepo } from "./repo/station";
+
+//Booking
+export { IBookingController } from "./controller/booking";
+export { IBookingRepo } from "./repo/booking";
+export { IBookingService } from "./service/booking";

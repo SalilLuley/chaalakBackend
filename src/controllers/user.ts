@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import { getFirestore } from "firebase-admin/firestore";
 import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { IUserService, IUserController } from "../interface/export";
-import * as shortUuid from "short-uuid";
+import { CreateBooking } from "../model/export";
 
 @injectable()
 export class UserController implements IUserController {
@@ -13,17 +12,37 @@ export class UserController implements IUserController {
   constructor(@inject(SERVICE_IDENTIFIER.IUserService) service: IUserService) {
     this.service = service;
   }
-
-  register = async (request: Request, response: Response) => {
+  findOne = async (request: Request, response: Response) => {
     try {
-      await this.service.register(request.body);
-      response.status(httpStatus.OK).send({ message: "Added item" });
+      const result = await this.service.findOne<CreateBooking>(
+        request.query.userId!.toString()
+      );
+      response.status(httpStatus.OK).send(result);
     } catch (error) {
-      console.log(error);
-
       response
         .status(httpStatus.BAD_REQUEST)
-        .send({ message: "Failed to add item" });
+        .send({ message: "Failed", error: error });
+    }
+  };
+  findAll = async (request: Request, response: Response) => {
+    try {
+      const result = await this.service.findAll();
+      response.status(httpStatus.OK).send(result);
+    } catch (error) {
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
+    }
+  };
+
+  insert = async (request: Request, response: Response) => {
+    try {
+      const result = await this.service.insert(request.body);
+      response.status(httpStatus.OK).send(result);
+    } catch (error) {
+      response
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "Failed", error: error });
     }
   };
 }
