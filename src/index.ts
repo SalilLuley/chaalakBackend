@@ -24,5 +24,6 @@ app.listen(PORT, (): void => {
 });
 
 /**
- * Reference - https://www.section.io/engineering-education/how-to-use-typescript-with-nodejs/
+ * Reference
+ * https://auth0.com/blog/node-js-and-typescript-tutorial-build-a-crud-api/
  */
