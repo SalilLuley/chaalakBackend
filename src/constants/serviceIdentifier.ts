@@ -20,5 +20,11 @@ export const SERVICE_IDENTIFIER = {
   IBookingRepo: Symbol.for("IBookingRepo"),
   IBookingService: Symbol.for("IBookingService"),
 
+  //Cars
+  CarsValidator: Symbol.for("CarsValidator"),
+  ICarsService: Symbol.for("ICarsService"),
+  ICarsRepo: Symbol.for("ICarsRepo"),
+  ICarsController: Symbol.for("ICarsController"),
+
   IDatabaseRepo: Symbol.for("IDatabaseRepo"),
 };
