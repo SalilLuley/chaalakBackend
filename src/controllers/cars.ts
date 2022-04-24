@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { inject } from "inversify";
 import { injectable } from "inversify/lib/annotation/injectable";
+import _ from "lodash";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import { ICarsService, ICarsController } from "../interface/export";
-import { InsertCar } from "../model/export";
+import { Car, InsertCar } from "../model/export";
 
 @injectable()
 export class CarsController implements ICarsController {
@@ -14,9 +15,21 @@ export class CarsController implements ICarsController {
   }
   delete = async (request: Request, response: Response) => {
     try {
-      const data = await this.service.delete<InsertCar>(
-        request.query.bookingId?.toString()!
+      const findOneCar = await this.service.findOne<InsertCar>(
+        _.toString(request.query.carDocumentId)
       );
+
+      if (_.isEmpty(findOneCar)) {
+        response.status(httpStatus.OK).send({ message: "Car not found" });
+        return;
+      }
+
+      const car = _.find(findOneCar.cars, {
+        carId: request.query.carId,
+      }) as Car;
+      car.isDeleted = true;
+
+      const data = await this.service.update<InsertCar>(findOneCar);
       response.status(httpStatus.OK).send(data);
     } catch (error) {
       response
@@ -28,7 +41,7 @@ export class CarsController implements ICarsController {
   findOne = async (request: Request, response: Response) => {
     try {
       const data = await this.service.findOne<InsertCar>(
-        request.query.bookingId?.toString()!
+        _.toString(request.query.carId)
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
@@ -63,7 +76,11 @@ export class CarsController implements ICarsController {
 
   create = async (request: Request, response: Response) => {
     try {
-      const result = await this.service.insert(request.body);
+      const body: InsertCar = {
+        ...request.body,
+        ...request.query,
+      };
+      const result = await this.service.insert(body);
       response.status(httpStatus.OK).send(result);
     } catch (error) {
       response

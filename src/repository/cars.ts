@@ -27,15 +27,15 @@ export class CarRepo implements ICarsRepo {
     await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.cars)
-      .doc(car.carId)
+      .doc(car.carDocumentId)
       .update(car);
-    return this.findOne(car.carId);
+    return this.findOne(car.carDocumentId);
   }
-  async findOne<T>(carId: string): Promise<T> {
+  async findOne<T>(carDocumentId: string): Promise<T> {
     const snapshot = await this.databaseRepo
       .getDb()
       .collection(MetaDataFirestore.cars)
-      .doc(carId)
+      .doc(carDocumentId)
       .get();
     return snapshot.data();
   }
@@ -54,7 +54,7 @@ export class CarRepo implements ICarsRepo {
       .getDb()
       .collection(MetaDataFirestore.cars)
       .doc(uuid)
-      .set({ ...car, carId: uuid });
+      .set({ ...car, carDocumentId: uuid });
     return this.findOne(uuid);
   }
 }

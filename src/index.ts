@@ -4,8 +4,10 @@ import cors from "cors";
 import helmet from "helmet";
 import httpStatus from "http-status";
 import { routes } from "./routes/export";
+import _ from "lodash";
 const app: Application = express();
 
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 const PORT = process.env.PORT || 3000;
 
 app.use(helmet());

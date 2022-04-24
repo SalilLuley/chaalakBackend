@@ -17,8 +17,8 @@ const validator = container.get<CarsValidator>(
 
 carsRoute.get("/all", validate(validator.findAll), controller.findAll);
 carsRoute.get("/", validate(validator.findOne), controller.findOne);
-carsRoute.put("/", validate(validator.findOne), controller.update);
-// carsRoute.delete("/", validate(validator.delete), controller.delete);
-// carsRoute.post("/", validate(validator.create), controller.create);
+carsRoute.put("/", validate(validator.update), controller.update);
+carsRoute.delete("/", validate(validator.delete), controller.delete);
+carsRoute.post("/", validate(validator.create), controller.create);
 
 export default carsRoute;
