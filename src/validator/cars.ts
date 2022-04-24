@@ -9,7 +9,7 @@ export class CarsValidator {
 
   findOne = {
     query: Joi.object({
-      carId: Joi.string().required(),
+      carDocumentId: Joi.string().required(),
     }).required(),
   };
 

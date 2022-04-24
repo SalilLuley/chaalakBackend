@@ -41,7 +41,7 @@ export class CarsController implements ICarsController {
   findOne = async (request: Request, response: Response) => {
     try {
       const data = await this.service.findOne<InsertCar>(
-        _.toString(request.query.carId)
+        _.toString(request.query.carDocumentId)
       );
       response.status(httpStatus.OK).send(data);
     } catch (error) {
