@@ -4,9 +4,10 @@ import cors from "cors";
 import helmet from "helmet";
 import httpStatus from "http-status";
 import { routes } from "./routes/export";
-
+import _ from "lodash";
 const app: Application = express();
 
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 const PORT = process.env.PORT || 3000;
 
 app.use(helmet());
@@ -25,5 +26,6 @@ app.listen(PORT, (): void => {
 });
 
 /**
- * Reference - https://www.section.io/engineering-education/how-to-use-typescript-with-nodejs/
+ * Reference
+ * https://auth0.com/blog/node-js-and-typescript-tutorial-build-a-crud-api/
  */

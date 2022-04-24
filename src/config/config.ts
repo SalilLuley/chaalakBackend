@@ -12,15 +12,20 @@ import {
   IBookingController,
   IBookingRepo,
   IBookingService,
+  ICarsService,
+  ICarsRepo,
+  ICarsController,
 } from "../interface/export";
 import { SERVICE_IDENTIFIER } from "../constants/export";
 import {
   BookingController,
+  CarsController,
   StationController,
   UserController,
 } from "../controllers/export";
 import {
   BookingValidator,
+  CarsValidator,
   StationValidator,
   UserValidator,
 } from "../validator/export";
@@ -30,9 +35,11 @@ import {
   UserRepo,
   StationRepo,
   BookingRepo,
+  CarRepo,
 } from "../repository/export";
 import {
   BookingService,
+  CarsService,
   StationService,
   UserService,
 } from "../services/export";
@@ -74,6 +81,16 @@ container.bind<IBookingRepo>(SERVICE_IDENTIFIER.IBookingRepo).to(BookingRepo);
 container
   .bind<IBookingService>(SERVICE_IDENTIFIER.IBookingService)
   .to(BookingService);
+
+//Cars
+container
+  .bind<CarsValidator>(SERVICE_IDENTIFIER.CarsValidator)
+  .to(CarsValidator);
+container.bind<ICarsService>(SERVICE_IDENTIFIER.ICarsService).to(CarsService);
+container.bind<ICarsRepo>(SERVICE_IDENTIFIER.ICarsRepo).to(CarRepo);
+container
+  .bind<ICarsController>(SERVICE_IDENTIFIER.ICarsController)
+  .to(CarsController);
 
 // container
 //   .bind<IDatabaseRepo>(SERVICE_IDENTIFIER.IDatabaseRepo)

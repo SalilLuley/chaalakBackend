@@ -3,3 +3,4 @@ export { FirebaseRepo } from "./db/firebase.repo";
 export { UserRepo } from "./user";
 export { StationRepo } from "./station";
 export { BookingRepo } from "./booking";
+export { CarRepo } from "./cars";

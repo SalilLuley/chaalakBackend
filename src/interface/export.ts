@@ -16,3 +16,8 @@ export { IStationRepo } from "./repo/station";
 export { IBookingController } from "./controller/booking";
 export { IBookingRepo } from "./repo/booking";
 export { IBookingService } from "./service/booking";
+
+//Cars
+export { ICarsController } from "./controller/cars";
+export { ICarsService } from "./service/cars";
+export { ICarsRepo } from "./repo/cars";
