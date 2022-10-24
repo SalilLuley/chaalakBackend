@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
-    "postinstall": "tsc && mv -i -v dist/ && rm -v -rf src",
+    "postinstall": "tsc",
     "build": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "deploy": "git add . && git commit -m Heroku && git push origin develop"
