@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts",
-    "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
+    "start": "node src/index.ts",
+    "postinstall": "tsc && mv -i -v dist/ && rm -v -rf src",
     "build": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "deploy": "git add . && git commit -m Heroku && git push heroku develop"
