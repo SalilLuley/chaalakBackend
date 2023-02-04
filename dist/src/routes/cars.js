@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const serviceIdentifier_1 = require("../constants/serviceIdentifier");
+const export_1 = require("../config/export");
+const export_2 = require("../middleware/export");
+const carsRoute = (0, express_1.Router)();
+const controller = export_1.container.get(serviceIdentifier_1.SERVICE_IDENTIFIER.ICarsController);
+const validator = export_1.container.get(serviceIdentifier_1.SERVICE_IDENTIFIER.CarsValidator);
+carsRoute.get("/all", (0, export_2.validate)(validator.findAll), controller.findAll);
+carsRoute.get("/", (0, export_2.validate)(validator.findOne), controller.findOne);
+carsRoute.put("/", (0, export_2.validate)(validator.update), controller.update);
+carsRoute.delete("/", (0, export_2.validate)(validator.delete), controller.delete);
+carsRoute.post("/", (0, export_2.validate)(validator.create), controller.create);
+exports.default = carsRoute;
